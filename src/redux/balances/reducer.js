@@ -1,5 +1,5 @@
 function balances(prevValue = 0, action) {
-  if (action.type === 'balances/initial') {
+  if (action.type === 'balances/restore') {
     return action.payload.value;
   }
 

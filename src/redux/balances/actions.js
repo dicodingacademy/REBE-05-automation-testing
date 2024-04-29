@@ -21,13 +21,12 @@ function withdraw(value) {
 function purge() {
   return {
     type: 'balances/purge',
-    payload: {},
   };
 }
 
 function restore(value) {
   return {
-    type: 'balances/initial',
+    type: 'balances/restore',
     payload: {
       value,
     },
@@ -59,21 +58,20 @@ function asyncWithdraw(value) {
     try {
       dispatch(withdraw(value));
       await balancesAPI.withdraw(value);
-    } catch (error) {
-      if (error.message === 'not enough balances') throw error;
+    } catch {
       dispatch(restore(balances));
     }
   };
 }
 
-function asyncPurge(value) {
+function asyncPurge() {
   return async (dispatch, getState) => {
     const { balances } = getState();
 
     try {
       dispatch(purge());
-      await balancesAPI.purge(value);
-    } catch (error) {
+      await balancesAPI.purge();
+    } catch {
       dispatch(restore(balances));
     }
   };
