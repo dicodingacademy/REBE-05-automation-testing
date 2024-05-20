@@ -28,8 +28,8 @@ describe('balances actions', () => {
       await store.dispatch(asyncDeposit(1_000));
 
       // Assert
-      const { balances } = store.getState();
-      expect(balances).toEqual(1_000);
+      const state = store.getState();
+      expect(state.balances).toEqual(1_000);
     });
 
     it('should restore state correctly when dispatching asyncDeposit action but API is failed', async () => {
@@ -40,8 +40,8 @@ describe('balances actions', () => {
       await store.dispatch(asyncDeposit(1_000));
 
       // Assert
-      const { balances } = store.getState();
-      expect(balances).toEqual(0);
+      const state = store.getState();
+      expect(state.balances).toEqual(0);
     });
   });
 
@@ -55,21 +55,21 @@ describe('balances actions', () => {
       await store.dispatch(asyncWithdraw(10_000));
 
       // Assert
-      const { balances } = store.getState();
-      expect(balances).toEqual(40_000);
+      const state = store.getState();
+      expect(state.balances).toEqual(40_000);
     });
 
     it('should restore state correctly when dispatching asyncWithdraw action but API is failed', async () => {
       // Arrange
-      balancesAPI.withdraw.mockImplementation(() => Promise.reject('ups, error!'));
+      balancesAPI.withdraw.mockImplementation(() => Promise.reject(new Error('ups, error!')));
       await store.dispatch(asyncDeposit(50_000));
 
       // Action
       await store.dispatch(asyncWithdraw(10_000));
 
       // Assert
-      const { balances } = store.getState();
-      expect(balances).toEqual(50_000);
+      const state = store.getState();
+      expect(state.balances).toEqual(50_000);
     });
   });
 
@@ -83,8 +83,8 @@ describe('balances actions', () => {
       await store.dispatch(asyncPurge());
 
       // Assert
-      const { balances } = store.getState();
-      expect(balances).toEqual(0);
+      const state = store.getState();
+      expect(state.balances).toEqual(0);
     });
 
     it('should restore state correctly when dispatching asyncPurge action but API is failed', async () => {
@@ -96,8 +96,8 @@ describe('balances actions', () => {
       await store.dispatch(asyncPurge());
 
       // Assert
-      const { balances } = store.getState();
-      expect(balances).toEqual(50_000);
+      const state = store.getState();
+      expect(state.balances).toEqual(50_000);
     });
   });
 
@@ -110,8 +110,8 @@ describe('balances actions', () => {
       await store.dispatch(asyncRestore());
 
       // Assert
-      const { balances } = store.getState();
-      expect(balances).toEqual(50_000);
+      const state = store.getState();
+      expect(state.balances).toEqual(50_000);
     });
   });
 });

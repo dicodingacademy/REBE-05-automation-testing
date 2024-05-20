@@ -1,3 +1,4 @@
+import React from 'react';
 import { configureStore } from '@reduxjs/toolkit';
 import { act, render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
@@ -19,8 +20,8 @@ describe('<BalancesPage /> component', () => {
     vi.resetAllMocks();
   });
 
-  async function renderPageWithBalances(balances) {
-    balancesAPI.getBalances.mockImplementation(() => Promise.resolve(balances));
+  async function renderPageWithBalances(_balances) {
+    balancesAPI.getBalances.mockImplementation(() => Promise.resolve(_balances));
 
     await act(() => render(
       <Provider store={store}>
