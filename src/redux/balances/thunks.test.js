@@ -1,9 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { describe } from 'vitest';
-import { balances } from './reducer.js';
+import { balances } from './slices.js';
 import {
   asyncDeposit, asyncPurge, asyncRestore, asyncWithdraw,
-} from './actions.js';
+} from './thunks.js';
 import { balancesAPI } from '../../utils/api.js';
 
 vi.mock('../../utils/api.js');

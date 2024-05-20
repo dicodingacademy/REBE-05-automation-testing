@@ -3,7 +3,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import { act, render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { userEvent } from '@testing-library/user-event';
-import { balances } from '../redux/balances/reducer.js';
+import { balances } from '../redux/balances/slices.js';
 import { balancesAPI } from '../utils/api.js';
 import BalancesPage from './BalancesPage.jsx';
 

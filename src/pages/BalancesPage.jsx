@@ -7,7 +7,7 @@ import DecimalInput from '../components/DecimalInput.jsx';
 import useInput from '../hooks/useInput.js';
 import {
   asyncDeposit, asyncRestore, asyncPurge, asyncWithdraw,
-} from '../redux/balances/actions.js';
+} from '../redux/balances/thunks.js';
 
 function BalancesPage() {
   const [inputValue, onInputValueChange] = useInput(0);

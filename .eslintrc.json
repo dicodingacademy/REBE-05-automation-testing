@@ -23,6 +23,7 @@
         "import/no-extraneous-dependencies": "off",
         "default-param-last": "off",
         "import/extensions": "off",
-        "no-undef": "off"
+        "no-undef": "off",
+        "no-param-reassign": "off"
     }
 }
